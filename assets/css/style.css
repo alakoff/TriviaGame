@@ -1,0 +1,92 @@
+body {
+    background: black;
+}
+/* Start Page */
+.back {
+    float:left;
+    margin-left:200px;
+    margin-top:10px;
+    margin-bottom:10px;
+    border:solid purple 10px;
+    background-image: url("../images/tiedye.jpg");
+
+
+}
+.home {
+    float:left;
+    margin-left:200px;
+    margin-right:200px;
+    margin-top:20px;
+    margin-bottom:20px;
+    border:solid purple 10px;
+    width:325px;
+    background:white;
+}
+.img1 {
+    height:220px;
+    width:250px;
+    margin-left:35px;
+    margin-bottom:0px;
+}
+.btn {
+    margin-left: 50px;
+    margin-bottom: 50px;
+    background-color: teal;
+    color:white;
+    font-weight: bold;
+}
+.img2 {
+    margin-left:50px;
+    margin-bottom: 40px;
+    height:150px;
+    width:200px;
+}
+
+/* Questions and Answers */
+.qa {
+    float:left;
+    display:none;
+    border:solid purple 10px;
+    background:white;
+    margin-top:20px;
+    margin-bottom:20px;
+    margin-right:20px;
+    width:300px;
+}
+h4 {
+    margin:0;
+}
+.timer {
+    background: lightgray;
+    text-align: center;
+}
+.question {
+    background: teal;
+    color:white;
+    margin:10px;
+    text-align: center;
+}
+.a1 {
+    background: orange;
+    color:white;
+    font-size: 20px;
+    text-align:center;
+}
+.a2 {
+    background: lightblue;
+    color:white;
+    font-size: 20px;
+    text-align:center;
+}
+.a3 {
+    background: purple;
+    color:white;
+    font-size: 20px;
+    text-align:center;
+}
+.a4 {
+    background: pink;
+    color:white;
+    font-size: 20px;
+    text-align:center;
+}
