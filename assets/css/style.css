@@ -4,7 +4,7 @@ body {
 /* Start Page */
 .back {
     float:left;
-    margin-left:200px;
+    margin-left:100px;
     margin-top:10px;
     margin-bottom:10px;
     border:solid purple 10px;
@@ -14,17 +14,17 @@ body {
 }
 .home {
     float:left;
-    margin-left:200px;
-    margin-right:200px;
+    margin-left:100px;
+    margin-right:100px;
     margin-top:20px;
     margin-bottom:20px;
     border:solid purple 10px;
-    width:325px;
+    width:300px;
     background:white;
 }
 .img1 {
     height:220px;
-    width:250px;
+    width:220px;
     margin-left:35px;
     margin-bottom:0px;
 }
@@ -51,7 +51,7 @@ body {
     margin-top:20px;
     margin-bottom:20px;
     margin-right:20px;
-    width:300px;
+    width:325px;
 }
 h4 {
     margin:0;
@@ -71,22 +71,60 @@ h4 {
     color:white;
     font-size: 20px;
     text-align:center;
+    margin-left: 20px;
 }
 .a2 {
-    background: lightblue;
+    background: blue;
     color:white;
     font-size: 20px;
     text-align:center;
+    margin-left: 20px;
 }
 .a3 {
     background: purple;
     color:white;
     font-size: 20px;
     text-align:center;
+    margin-left: 20px;
 }
 .a4 {
     background: pink;
     color:white;
     font-size: 20px;
     text-align:center;
+    margin-left: 20px;
+}
+.qmessage {
+    background: lightgray;
+    text-align: center;
+    font-weight: bold;
+}
+.scores {
+    float:left;
+    display:none;
+    border:solid purple 10px;
+    background:white;
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-right:10px;
+    width:325px;
+}
+.btn-playagain {
+    margin-left:50px;
+    font-weight: bold;
+    background: teal;
+    color:white;
+}
+.btn-noplay {
+    clear:both;
+    float:left;
+    margin-left:50px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    background: teal;
+    color:white;
+}
+.qtotals {
+    margin-left:50px;
+    font-weight: bold;
 }
