@@ -7,7 +7,6 @@ var game = {
     dTime:0,
     response:'',
     qInterval:0,
-    dInterval:0,
     qNum:0,
     correctCounter:0,
     wrongCounter:0,
@@ -39,17 +38,6 @@ var game = {
         }
     },
 
-    //Shows correct or wrong question message with color for two seconds
-    dTimer: function() {
-
-        //Decrease right/wrong display timer by one second
-        game.dTime--;
-
-        //When dTime is zero, clear dTimer interval
-        if (game.dTime === 0) {
-            clearInterval(game.dInterval);
-        }
-    },
 
     //Checks for correct or wrong answer
     checkResponse: function() {
@@ -57,16 +45,13 @@ var game = {
         if (game.answer === game.response) {
             game.correctCounter++;
             $(".qmessage").css("background","green").text("You are correct!");
-            game.dTime = 2;
-            game.dInterval = setInterval(game.dTimer, 1000);
+            setTimeout(game.gameOver, 2000);
 
         } else {
             game.wrongCounter++;
             $(".qmessage").css("background","red").text("You are NOT correct!");
-            game.dTime = 2;
-            game.dInterval = setInterval(game.dTimer, 1000);
+            setTimeout(game.gameOver, 2000);
         }
-        game.gameOver();
     },
 
 
@@ -77,11 +62,7 @@ var game = {
         //Add one to question number
         game.qNum++;
 
-        console.log("game over: " + game.qNum);
-        console.log("array length: " + game.qArray.length);
-
         if (game.qNum === game.qArray.length) {
-            console.log("qNum equal to array length - Game Done");
             $(".qmessage").css("background","lightgray");
             $(".qmessage").text("The test has finished");
             game.showScore();
@@ -112,8 +93,6 @@ var game = {
         //If no thanks  button is clicked
         $(".btn-noplay").on("click",function() {
 
-
-
             //Hide scores display
             $(".scores").css("display","none");
 
@@ -126,14 +105,12 @@ var game = {
     //Question display and response processing
     questions: function() {
 
-        console.log("current question num: " + game.qNum);
-
         //Reset question correct or wrong message display
         $(".qmessage").css("background","lightgray");
         $(".qmessage").text("Good Luck !");
 
-        //Set 10 seconds per question
-        game.qTime = 10;
+        //Set 30 seconds per question
+        game.qTime = 30;
 
         //Update question and possible answers
         $(".question").text(game.qArray[game.qNum][0]);
@@ -146,24 +123,14 @@ var game = {
         //Start question timer function to run every second
         game.qInterval = setInterval(game.qTimer, 1000);
 
-        //Get user's question response
-        $(".answers").on("click", function() {
-            clearInterval(game.qInterval);
-            game.response = $(this).text();
-            game.checkResponse();
-        })
         },
 
 
     //Play game function
     play: function() {
 
-        console.log("new game started from play function");
-
         //Clear any running timers
         clearInterval(game.qInterval);
-        clearInterval(game.dInterval);
-
 
         //Set game variables back to zero if user clicks on the
         //Test Your 80s Knowledge button or Test Again button
@@ -172,10 +139,8 @@ var game = {
         game.wrongCounter = 0;
         game.unanswered = 0;
         game.qTime = 0;
-        game.dTime = 0;
         game.response = '';
         game.qInterval = 0;
-        game.dInterval = 0;
         game.qNum = 0;
         game.answer = '';
 
@@ -197,5 +162,14 @@ var game = {
 
 //Main program block
 $(document).ready(function() {
+
+    //Start the game
     $(".btn").click(game.play);
+
+    //Get user's question response and check it
+    $(".answers").on("click", function() {
+        clearInterval(game.qInterval);
+        game.response = $(this).text();
+        game.checkResponse();
+    })
     })
