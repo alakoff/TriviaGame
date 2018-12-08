@@ -13,8 +13,9 @@ var game = {
     wrongCounter:0,
     answer:'',
 
-    //Questions array
-    qArray: [
+    //Questions array, correct answer is always the last item of each element
+    qArray:
+        [
         ["Which 1980's US president survived an assassination attempt?","Bill Clinton","Ronald Reagan","George H W Bush","Jimmy Carter","Ronald Reagan"],
         ["In 1989, who had the first of many No 1s songs with Straight Up?","Paul Anka","Bangles","Johnny Cash","Paula Abdul","Paula Abdul"],
         ["Where in the Ukraine was there a nuclear explosion in 1986?","Chernobyl",
@@ -38,11 +39,13 @@ var game = {
         }
     },
 
+    //Shows correct or wrong question message with color for two seconds
     dTimer: function() {
+
         //Decrease right/wrong display timer by one second
         game.dTime--;
 
-        //When dTime is zero, clear dTimer
+        //When dTime is zero, clear dTimer interval
         if (game.dTime === 0) {
             clearInterval(game.dInterval);
         }
@@ -55,12 +58,13 @@ var game = {
             game.correctCounter++;
             $(".qmessage").css("background","green").text("You are correct!");
             game.dTime = 2;
-            setInterval(game.dTimer, 1000);
+            game.dInterval = setInterval(game.dTimer, 1000);
+
         } else {
             game.wrongCounter++;
             $(".qmessage").css("background","red").text("You are NOT correct!");
             game.dTime = 2;
-            setInterval(game.dTimer, 1000);
+            game.dInterval = setInterval(game.dTimer, 1000);
         }
         game.gameOver();
     },
@@ -81,11 +85,13 @@ var game = {
             $(".qmessage").css("background","lightgray");
             $(".qmessage").text("The test has finished");
             game.showScore();
-        } else if (game.qNum < game.qArray.length) {
-                console.log("qNum " + game.qNum + " qArrayLength: " + game.qArray.length);
-                game.questions(game.qNum);
-            }
+        } else {
+            // if (game.qNum < game.qArray.length) {
+            game.questions();
+
+        }
     },
+
 
     //Shows scoreboard div and enters values for the counters
     showScore: function() {
@@ -98,15 +104,15 @@ var game = {
 
         //If test again button is clicked
         $(".btn-playagain").on("click",function() {
+            clearInterval(game.qInterval);
+            clearInterval(game.dInterval);
             game.play();
         })
 
         //If no thanks  button is clicked
         $(".btn-noplay").on("click",function() {
 
-            //Clear any running timers
-            clearInterval(game.qInterval);
-            clearInterval(game.dInterval);
+
 
             //Hide scores display
             $(".scores").css("display","none");
@@ -116,25 +122,26 @@ var game = {
         })
     },
 
-    //Question display and response processing
-    questions: function(i) {
 
-        console.log("current question num: " + i);
+    //Question display and response processing
+    questions: function() {
+
+        console.log("current question num: " + game.qNum);
 
         //Reset question correct or wrong message display
         $(".qmessage").css("background","lightgray");
         $(".qmessage").text("Good Luck !");
 
-        //Set 25 seconds per question
+        //Set 10 seconds per question
         game.qTime = 10;
 
         //Update question and possible answers
-        $(".question").text(game.qArray[i][0]);
-        $(".a1").text(game.qArray[i][1]);
-        $(".a2").text(game.qArray[i][2]);
-        $(".a3").text(game.qArray[i][3]);
-        $(".a4").text(game.qArray[i][4]);
-        game.answer = game.qArray[i][5];
+        $(".question").text(game.qArray[game.qNum][0]);
+        $(".a1").text(game.qArray[game.qNum][1]);
+        $(".a2").text(game.qArray[game.qNum][2]);
+        $(".a3").text(game.qArray[game.qNum][3]);
+        $(".a4").text(game.qArray[game.qNum][4]);
+        game.answer = game.qArray[game.qNum][5];
 
         //Start question timer function to run every second
         game.qInterval = setInterval(game.qTimer, 1000);
@@ -153,21 +160,24 @@ var game = {
 
         console.log("new game started from play function");
 
+        //Clear any running timers
+        clearInterval(game.qInterval);
+        clearInterval(game.dInterval);
+
+
         //Set game variables back to zero if user clicks on the
-        //home page Test Your 80s Knowledge button again after already playing
+        //Test Your 80s Knowledge button or Test Again button
+        //after already playing
         game.correctCounter = 0;
         game.wrongCounter = 0;
         game.unanswered = 0;
         game.qTime = 0;
+        game.dTime = 0;
         game.response = '';
         game.qInterval = 0;
         game.dInterval = 0;
         game.qNum = 0;
         game.answer = '';
-
-        //Ensure both question and display intervals are stopped
-        clearInterval(game.qInterval);
-        clearInterval(game.dInterval);
 
         //Show questions, qmessage and answers display
         $(".qa").css("display","block");
