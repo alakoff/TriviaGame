@@ -16,9 +16,10 @@ var game = {
     qArray:
         [
         ["Which 1980's US president survived an assassination attempt?","Bill Clinton","Ronald Reagan","George H W Bush","Jimmy Carter","Ronald Reagan"],
-        ["In 1989, who had the first of many No 1s songs with Straight Up?","Paul Anka","Bangles","Johnny Cash","Paula Abdul","Paula Abdul"],
+        ["In 1989, who had the first of many hit songs with Straight Up?","Paul Anka","Bangles","Johnny Cash","Paula Abdul","Paula Abdul"],
         ["Where in the Ukraine was there a nuclear explosion in 1986?","Chernobyl",
         "Odessa","Donetsk","Kiev","Chernobyl"],
+        ["Who released an album called Thriller in 1982?","Elton John","Sting","Michael Jackson","Madonna","Michael Jackson"],
         ],
 
     //Timer function
